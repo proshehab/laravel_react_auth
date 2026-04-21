@@ -34,13 +34,13 @@ const Login = () => {
       <input
         type="email"
         {...register('email', {
-          required: "This field is required."
+          required: "This email field is required."
         })}
-        className="w-full mt-1 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        className=" w-full mt-1 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
       />
 
       {errors.email && (
-        <p className='invalid-feedback'>
+        <p className='text-red-500'>
           {errors.email.message}
         </p>
       )}
@@ -51,9 +51,17 @@ const Login = () => {
           Password
         </label>
         <input
-          type="password"
+          type="password" 
+           {...register('password', {
+          required: "This passeord field is required."
+        })}
           className="w-full mt-1 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
         />
+        {errors.password && (
+        <p className='text-red-500'>
+          {errors.password.message}
+        </p>
+      )}
       </div>
 
       <div className="flex items-center justify-between">
