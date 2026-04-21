@@ -1,6 +1,18 @@
 import React from 'react'
+import { useForm } from "react-hook-form"
 
 const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm()
+
+  const onSubmit = (data) => {
+    console.log(data)
+  }
+  
   return (
     <>
 <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -12,16 +24,27 @@ const Login = () => {
       Sign in to your account
     </p>
 
-    <form className="space-y-4">
-      <div>
-        <label className="block text-sm font-medium text-gray-700">
-          Email
-        </label>
-        <input
-          type="text"
-          className="w-full mt-1 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-        />
-      </div>
+
+    <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+     <div>
+      <label className="block text-sm font-medium text-gray-700">
+        Email
+      </label>
+
+      <input
+        type="email"
+        {...register('email', {
+          required: "This field is required."
+        })}
+        className="w-full mt-1 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      />
+
+      {errors.email && (
+        <p className='invalid-feedback'>
+          {errors.email.message}
+        </p>
+      )}
+    </div>
 
       <div>
         <label className="block text-sm font-medium text-gray-700">
@@ -43,7 +66,7 @@ const Login = () => {
         </a>
       </div>
 
-      <button className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700">
+      <button type = 'submit' className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700">
         Sign in
       </button>
     </form>

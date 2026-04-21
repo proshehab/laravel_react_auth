@@ -44,4 +44,14 @@ class AuthController extends Controller
             }
         }
     }
+    public function logout()
+    {
+        $user = User::find(Auth::user()->id);
+        $user->tokens()->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Logout seccessfully.'
+        ]);
+    }
 }

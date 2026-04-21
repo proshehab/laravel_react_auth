@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -9,4 +10,11 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
+
 Route::post('index', [AuthController::class, 'index']);
+
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('dashboard', [DashboardController::class, 'index']);
+    Route::get('logout', [AuthController::class, 'logout']);
+});
