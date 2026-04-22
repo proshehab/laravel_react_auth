@@ -41,7 +41,7 @@ const Login = () => {
       </label>
 
       <input
-        type="email"
+        type="email" name='email'
         {...register('email', {
           required: "This email field is required.",
           pattern: {
@@ -65,7 +65,7 @@ const Login = () => {
           Password
         </label>
         <input
-          type="password" 
+          type="password" name='password'
            {...register('password', {
           required: "This passeord field is required."
         })}
