@@ -9,8 +9,17 @@ const Login = () => {
     formState: { errors },
   } = useForm()
 
-  const onSubmit = (data) => {
-    console.log(data)
+  const onSubmit = async (data) => {
+    //console.log(data)
+    const res = await fetch("http://127.0.0.1:8000/api/index",{
+      method :"POST",
+      headers :{
+        'Content-type': 'application/json' 
+      },
+      body:JSON.stringify('data')
+    });
+    const result = await res.json();
+    console.log(result);
   }
   
   return (
