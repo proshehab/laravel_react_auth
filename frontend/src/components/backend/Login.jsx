@@ -34,8 +34,13 @@ const Login = () => {
       <input
         type="email"
         {...register('email', {
-          required: "This email field is required."
-        })}
+          required: "This email field is required.",
+          pattern: {
+            value : /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+            message: "Invalid email address"
+          }
+        })
+      }
         className=" w-full mt-1 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
       />
 
