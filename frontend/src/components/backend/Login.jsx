@@ -1,8 +1,10 @@
 import React from 'react'
 import { useForm } from "react-hook-form"
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Login = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -29,16 +31,14 @@ const onSubmit = async (data) => {
     if (result.status === 400) {
       toast.error("Validation error");
     } 
-    else if (result.status === 401) {
-      toast.error(result.message);
+    else  {
+       navigate ('/admin/dashboard') 
     } 
-    else if (result.status === 200) {
-      toast.success("Login successful");
-    }
-
-  } catch (error) {
-    toast.error("Server error");
-    console.error(error);
+    
+  }
+  catch (error) {
+    console.error("Error:", error);
+    toast.error("An error occurred while logging in.");
   }
 };
   
