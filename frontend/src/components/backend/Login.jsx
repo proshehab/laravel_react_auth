@@ -19,10 +19,10 @@ const Login = () => {
       body:JSON.stringify(data)
     });
     const result = await res.json();
-    console.log('result');
-    //  if(result.status == false){
-    //     toast.error(result.message)
-    //  }
+    //console.log('result');
+     if(result.status == false){
+        toast.error(result.message)
+     }
   }
   
   return (
